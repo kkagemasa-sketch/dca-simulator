@@ -196,7 +196,7 @@ with st.container():
             periodic_amount = total_investment / months
             st.caption(f"月々: **{periodic_amount:,.0f}**")
         else:
-            periodic_amount = total_investment / max(1, period_years)
+            periodic_amount = total_investment / max(1, period_years + 1)
             st.caption(f"年間: **{periodic_amount:,.0f}**")
 
     with s4:
@@ -243,7 +243,7 @@ def simulate_dca(prices, total_investment, frequency):
         n_periods = len(prices)
         periodic_amount = total_investment / n_periods
     else:
-        years = max(1, (prices.index[-1].year - prices.index[0].year))
+        years = max(1, (prices.index[-1].year - prices.index[0].year) + 1)
         periodic_amount = total_investment / years
 
     cumulative_shares = 0
